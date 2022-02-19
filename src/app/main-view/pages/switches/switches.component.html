@@ -1,0 +1,36 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Switches</h1>
+  <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-tile *ngFor="let Thing of Things | async" [colspan]="cols" [rowspan]="rows">
+      <mat-card class="dashboard-card" *ngIf=Thing.isActive>
+        <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+        <mat-card-header>
+          
+          <mat-card-title>
+            
+            {{Thing.presentationName}}
+            <!-- <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu> -->
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+
+
+          <!-- Card Content Here -->
+          <mat-slide-toggle class="example-margin" [checked]="true" [disabled]="isLoading"
+            (change)="onSlide($event, Thing)">
+          </mat-slide-toggle>
+          <!-- <mat-spinner></mat-spinner> -->
+
+
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

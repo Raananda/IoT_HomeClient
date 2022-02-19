@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainViewComponent } from './main-view.component';
-import { SearchDataComponent } from './pages/search-data/search-data.component';
-import { ExampleOneComponent } from './components/example-one/example-one.component';
-import { ExampleTwoComponent } from './components/example-two/example-two.component';
 import { MainViewRoutingModule } from './main-view-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
@@ -17,11 +14,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { FormComponent } from './pages/form/form.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SwitchesComponent } from './pages/switches/switches.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -40,8 +40,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
-  declarations: [MainViewComponent, SearchDataComponent, ExampleOneComponent, ExampleTwoComponent, MainNavComponent, HomeComponent, FormComponent]
+  declarations: [MainViewComponent, MainNavComponent, HomeComponent, SwitchesComponent]
 })
 export class MainViewModule { }

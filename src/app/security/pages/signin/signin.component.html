@@ -1,0 +1,76 @@
+<div class="grid-container">
+    <!-- <h1 class="mat-h1">Dashboard</h1> -->
+    <mat-grid-list cols="3" rowHeight="400">
+        <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+            <mat-card class="dashboard-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        {{card.title}}
+                    </mat-card-title>
+                </mat-card-header>
+
+                <!-- Card Content Here -->
+                <mat-card-content class="dashboard-card-content">
+                    <mat-tab-group>
+
+                        <!-- LOGIN -->
+                        <mat-tab label="Login">
+                            <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmitLogin()" class="form-struct">
+                                <mat-form-field class="full-width">
+                                    <input matInput placeholder="Username" formControlName="UserName">
+                                    <mat-error *ngIf="loginForm.controls['UserName'].hasError('required')">
+                                        Username is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="full-width">
+                                    <input matInput placeholder="Password" formControlName="Password">
+                                    <mat-error *ngIf="loginForm.controls['Password'].hasError('required')">
+                                        Password is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <button mat-raised-button color="primary" type="submit">Login</button>
+                                {{LoginErrorMessege}}
+                            </form>
+                        </mat-tab>
+
+                        <!-- SIGN UP -->
+                        <mat-tab label="Sign Up">
+                            <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmitRegister()"
+                                class="form-struct">
+
+                                <mat-form-field class="full-width">
+                                    <input matInput placeholder="Username" formControlName="UserName">
+                                    <mat-error *ngIf="registerForm.controls['UserName'].hasError('required')">
+                                        Username is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="full-width">
+                                    <input matInput placeholder="Password" formControlName="Password">
+                                    <mat-error *ngIf="registerForm.controls['Password'].hasError('required')">
+                                        Password is<strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <button [disabled]="RegisterFlag" mat-raised-button color="primary" type="submit">Sign
+                                    Up</button>
+                                <span *ngIf="RegisterFlag" class="success-message">
+                                    <mat-icon>done</mat-icon>
+                                    <span>Registration Success</span>
+
+                                </span>
+                                <mat-error *ngIf="!RegisterFlag">
+                                    <div *ngFor="let error of RegisterErrorMessege">{{error}}</div>
+
+                                </mat-error>
+
+                            </form>
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
