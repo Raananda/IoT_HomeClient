@@ -6,6 +6,8 @@ import { ThingDtoReponse } from 'src/app/core/Dtos/ThingDtoReponse';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { SwitchDeviceShadowDocument } from 'src/app/core/models/SwitchDocument';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ThingHistoryComponent } from '../../components/thing-history/thing-history.component';
 
 @Component({
   selector: 'app-switches',
@@ -29,7 +31,8 @@ export class SwitchesComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private switchShadowService: SwitchShadowService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -51,8 +54,8 @@ export class SwitchesComponent implements OnInit {
     })
 
     // Snackbar Config
-    this.snackBarConfigconfig  = {
-      duration:5000
+    this.snackBarConfigconfig = {
+      duration: 5000
     }
   }
 
@@ -88,6 +91,28 @@ export class SwitchesComponent implements OnInit {
     console.log(id);
     return true
   }
+
+  onHistory(thingName: string): void {
+
+    const dialogRef = this.dialog.open(ThingHistoryComponent, {
+      data: {
+        thingName: thingName
+      }
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      //   console.log(`Dialog result: ${result}`);
+    });
+
+  }
+
+
+
+
+
+
+
 
   // acknowledge(id: string): Observable<boolean> {
 

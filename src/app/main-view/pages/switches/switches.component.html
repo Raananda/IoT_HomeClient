@@ -10,6 +10,10 @@
           <mat-card-title>
 
             {{Thing.presentationName}}
+
+            <button (click)="onHistory(Thing.thingName)" mat-icon-button class="history-button">
+              <mat-icon>history</mat-icon>
+            </button>
             <mat-icon *ngIf="isReported | async">autorenew</mat-icon>
             <mat-icon *ngIf="isError | async">error</mat-icon>
             <!-- <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
