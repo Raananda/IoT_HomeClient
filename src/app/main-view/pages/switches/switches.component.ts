@@ -8,6 +8,7 @@ import { SwitchDeviceShadowDocument } from 'src/app/core/models/SwitchDocument';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ThingHistoryComponent } from '../../components/thing-history/thing-history.component';
+import { ThingQuartzComponent } from '../../components/thing-quartz/thing-quartz.component';
 
 @Component({
   selector: 'app-switches',
@@ -106,6 +107,23 @@ export class SwitchesComponent implements OnInit {
     });
 
   }
+
+
+  onQuartz(thingName: string) {
+
+    const dialogRef = this.dialog.open(ThingQuartzComponent, {
+      data: {
+        id: thingName
+      }
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      //   console.log(`Dialog result: ${result}`);
+    });
+
+  }
+
 
 
 

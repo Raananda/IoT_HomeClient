@@ -1,0 +1,24 @@
+mat-card {
+    margin-bottom: 8px;
+    background-color: rgb(246, 246, 246);
+    padding: 5px;
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #651fff;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+}
+
+.trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.trigger-time {
+    margin-right: 10px;
+}

@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SwitchHistoryResponseDto } from 'src/app/core/Dtos/SwitchHistoryResponseDto';
-import { ThingHistory } from 'src/app/core/models/ThingHistory';
+import { ThingData } from 'src/app/core/models/ThingData';
 import { ThingHistoryService } from 'src/app/core/services/thing-history.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class ThingHistoryComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: ThingHistory,
+    @Inject(MAT_DIALOG_DATA) public data: ThingData,
     private thingHistoryService: ThingHistoryService
   ) {
   }

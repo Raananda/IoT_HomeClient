@@ -1,0 +1,48 @@
+<mat-progress-bar mode="indeterminate" *ngIf="AddBtnFlag || RemoveFlag"></mat-progress-bar>
+
+<!-- Triggers -->
+
+<mat-card *ngFor="let Trigger of Triggers">
+    <div class="trigger">
+        <span class="trigger-time">
+            {{Trigger.start.time | date:'HH:mm'}} - {{Trigger.end.time | date:'HH:mm'}}
+        </span>
+        <mat-chip-list aria-label="">
+            <mat-chip *ngFor="let day of Trigger.start.daysOfWeekIntArr" selected>{{day}}</mat-chip>
+        </mat-chip-list>
+
+        <button (click)="onRemoveTimer(Trigger)" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</mat-card>
+
+
+<!-- New Trigger -->
+<form [formGroup]="NewTimeForm" novalidate (ngSubmit)="onSubmitNewTime()">
+
+    <mat-form-field class="full-width">
+        <mat-label>Start</mat-label>
+        <input type="time" matInput formControlName="startTime">
+        <mat-error *ngIf="NewTimeForm.controls['startTime'].hasError('required')">
+            Time is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="full-width">
+        <mat-label>End</mat-label>
+        <input type="time" matInput formControlName="endTime">
+        <mat-error *ngIf="NewTimeForm.controls['endTime'].hasError('required')">
+            Time is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-chip-list multiple>
+        <mat-chip *ngFor="let day of DaysOfWeekobj.data" [selected]="day.selected" (click)="onSelectDay(day)">
+            {{day.name}}
+        </mat-chip>
+    </mat-chip-list>
+
+    <button [disabled]="AddBtnFlag || !NewTimeForm.valid" mat-raised-button color="primary" type="submit">Add</button>
+</form>
