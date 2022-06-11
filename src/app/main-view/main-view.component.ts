@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InfraServerService } from '../core/services/infra-server.service';
+import { Store } from '@ngxs/store';
+import { AddAppData } from '../core/ngxs/actions/app-data.actions';
+import { AppService } from '../core/services/app.service';
 
 @Component({
   selector: 'app-main-view',
@@ -8,18 +10,14 @@ import { InfraServerService } from '../core/services/infra-server.service';
 })
 export class MainViewComponent implements OnInit {
 
-  constructor(private infraServerService: InfraServerService) { }
+  constructor(private appService: AppService, private store: Store) { }
 
   ngOnInit() {
- 
-  }
 
-
-
-  onInit(){
-  
-    this.infraServerService.getInit().subscribe(resp => {
-      console.log(resp);
+    // Add data to app state
+    this.appService.Get().subscribe(resp => {
+      this.store.dispatch(new AddAppData(resp));
     });
+
   }
 }
